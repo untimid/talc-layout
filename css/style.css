@@ -408,6 +408,7 @@ html {
 body {
   font-family: var(--main-font);
   position: relative;
+  overflow-x: hidden;
 }
 a {
   color: var(--main-black);
@@ -442,11 +443,16 @@ a {
 }
 
 .body-text {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 20.8px;
+  line-height: 18.2px;
   text-align: left;
   color: var(--main-black, #131313);
+}
+.container-colorized .body-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18.2px;
 }
 
 .caption {
@@ -493,6 +499,7 @@ a {
 .advantages-container {
   display: grid;
   grid-gap: 16px;
+  grid-row: 180px;
 }
 
 .main-header {
@@ -817,7 +824,7 @@ a {
 }
 
 .hero-slider {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 .hero-swiper {
@@ -943,8 +950,9 @@ a {
 }
 .contacts-grid {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 100px auto;
   margin: 0 16px 16px;
+  max-width: 100%;
 }
 .contacts-grid > * {
   display: flex;
@@ -1010,6 +1018,9 @@ a {
   background-color: var(--light-grey);
   cursor: pointer;
   transition: all 0.2s;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 23.4px;
 }
 .filter-link.active {
   color: var(--accent-blue);
@@ -1038,13 +1049,14 @@ a {
   }
   .hero-intro {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 348px;
+  }
+  .container-colorized .body-text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18.2px;
   }
 
-  .hero-intro .container-colorized {
-    width: 100%;
-    min-width: 348px;
-  }
   .main-header {
     grid-template-columns: 1fr 1fr;
     height: 80px;
@@ -1069,7 +1081,8 @@ a {
     margin-right: 40px;
   }
   .advantages-container {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 230px;
   }
   .header-contacts .header-messenger-link {
     visibility: visible;
@@ -1087,6 +1100,10 @@ a {
     height: auto;
     width: 100%;
   }
+  .swiper-slide-content {
+    left: 24px;
+    bottom: 24px;
+  }
   .projects-block > .project-button {
     margin: 0 0 0 auto;
     width: auto;
@@ -1101,18 +1118,18 @@ a {
     visibility: hidden;
     display: none;
   }
-  .contacts-wrapper {
-    background-color: var(--light-grey);
-    border-radius: 20px;
-    padding: 24px;
-  }
+
   .contacts-section {
     display: grid;
-    grid-template-columns: calc(50% - 12px) calc(50% - 12px);
+    grid-template-columns: 1fr 1fr;
     grid-gap: 24px;
   }
   .contacts-grid {
-    grid-template-columns: auto auto;
+    grid-template-columns: 130px auto;
+    margin-left: 0;
+  }
+  .contacts-wrapper .headline-2 {
+    margin-left: 0;
   }
   .contacts-grid > *:nth-child(2n) {
     justify-content: left;
@@ -1167,9 +1184,16 @@ a {
     line-height: 31.2px;
   }
   .body-text {
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 31.2px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20.8px;
+    text-align: left;
+    color: var(--main-black, #131313);
+  }
+  .container-colorized .body-text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20.8px;
   }
   .caption {
     font-size: 16px;
@@ -1183,10 +1207,14 @@ a {
   }
   .hero-intro {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 525px;
+  }
+  .hero-slider {
+    margin-bottom: 24px;
   }
   .advantages-container {
     grid-gap: 24px;
+    height: 300px;
   }
   .hamburger-button {
     display: none;
@@ -1194,6 +1222,7 @@ a {
   }
   .main-header {
     grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 80px;
   }
   .header-desktop-menu {
     visibility: visible;
@@ -1203,9 +1232,24 @@ a {
   .hero-swiper {
     height: 640px;
   }
+  .filter-link {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+  }
   .hero-swiper-next,
   .hero-swiper-previous {
     width: 48px;
     height: 48px;
+  }
+  .contacts-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-grey);
+    border-radius: 20px;
+    padding: 40px 24px;
+  }
+  .contacts-wrapper .headline-2 {
+    margin-bottom: 40px;
   }
 }
