@@ -805,7 +805,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
+  height: 40px;
   font-weight: 500;
   padding: 0 16px;
   border-radius: 8px;
@@ -814,6 +814,8 @@ a {
   color: white;
   cursor: pointer;
   transition: all 0.2s;
+  font-family: var(--main-font);
+  font-size: 16px;
 }
 .primary-button:hover {
   background-color: var(--main-black);
@@ -894,41 +896,7 @@ a {
 .projects-filter-select {
   margin-bottom: 8px;
 }
-.custom-select {
-  width: 100%;
-  height: 48px;
-  position: relative;
-}
-.custom-select select {
-  width: 100%;
-  height: 100%;
-  padding: 16px;
-  border-radius: 8px;
-  border-color: var(--main-black);
-  appearance: none;
-  cursor: pointer;
-}
-.custom-select.blue-select-border select {
-  border-color: var(--accent-blue);
-}
-.custom-select::before {
-  height: 10px;
-  width: 10px;
-  position: absolute;
-  content: "";
-  right: 16px;
-  top: 16px;
-  pointer-events: none;
-  border-left: solid 2px var(--main-black);
-  border-bottom: solid 2px var(--main-black);
-  transform: rotate(-45deg);
-}
-.custom-select.blue-select-border::before {
-  border-color: var(--accent-blue);
-}
-.custom-select option {
-  background-color: white;
-}
+
 .projects-block {
   margin-bottom: 80px;
   width: 100%;
@@ -1037,6 +1005,110 @@ a {
   color: var(--accent-blue);
   text-decoration: underline;
 }
+
+/* custom select styles */
+/* The container must be positioned relative: */
+.custom-select {
+  font-family: var(--main-font);
+  position: relative;
+  border-radius: 8px;
+  border: solid 1px var(--main-black);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+.custom-select:hover {
+  border-color: var(--accent-blue);
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: var(--main-white);
+  width: 100%;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 12px;
+  right: 12px;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid var(--main-black);
+  border-bottom: 2px solid var(--main-black);
+  transform: rotate(-45deg);
+  transition: all 0.2s;
+}
+.custom-select.blue-select-border {
+  border-color: var(--accent-blue);
+}
+.custom-select.blue-select-border:hover {
+  border-color: var(--main-black);
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  top: 16px;
+  border-left: none;
+  border-bottom: none;
+  border-top: 2px solid var(--main-black);
+  border-right: 2px solid var(--main-black);
+}
+.custom-select:hover .select-selected:after,
+.custom-select:hover .select-selected.select-arrow-active:after {
+  border-color: var(--accent-blue);
+}
+
+.custom-select.blue-select-border .select-selected:after,
+.custom-select.blue-select-border .select-selected.select-arrow-active:after {
+  border-color: var(--accent-blue);
+}
+.custom-select.blue-select-border:hover .select-selected:after,
+.custom-select.blue-select-border:hover
+  .select-selected.select-arrow-active:after {
+  border-color: var(--main-black);
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,
+.select-selected {
+  color: var(--main-black);
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: var(--main-white);
+  border-radius: 8px;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border: solid 1px var(--light-grey);
+}
+.select-items > div {
+  height: 40px;
+  border-bottom: solid 1px var(--light-grey);
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  color: var(--accent-blue);
+}
+/* end of custom select styles */
 
 @media only screen and (min-width: 768px) {
   .headline-1 {
