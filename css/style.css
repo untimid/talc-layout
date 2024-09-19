@@ -1024,7 +1024,7 @@ a {
 }
 
 .custom-select select {
-  display: none; /*hide original SELECT element: */
+  display: none !important; /*hide original SELECT element: */
 }
 
 .select-selected {
