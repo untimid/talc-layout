@@ -11085,6 +11085,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const WHATSAPP_PHONE = "+79104256479";
+
 const heroSwipers = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
   // configure Swiper to use modules
   modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
@@ -11117,6 +11119,18 @@ heroSwipers.map((swiper) => {
   }
   selectEl?.addEventListener("changeSelectFromSlider", handleSelectChange);
 
+  function setContactLinks(swiper) {
+    const activeSlideIndex = swiper.activeIndex;
+    const projectsBlock = swiperEl.closest(".projects-block");
+    const contactLink = projectsBlock.querySelector(".project-button");
+    const currentSlide = swiper.slides[activeSlideIndex];
+    const projectName =
+      currentSlide.querySelector(".headline-2").textContent || null;
+    contactLink.href = projectName
+      ? `https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте, расскажите пожалуйста подробнее о проекте "${projectName}"`
+      : `https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте, расскажите пожалуйста подробнее о ваших услугах"`;
+  }
+
   if (slides?.length && selectEl) {
     slides.forEach((slide, key) => {
       const optionEl = document.createElement("option");
@@ -11132,10 +11146,13 @@ heroSwipers.map((swiper) => {
         selectEl.selectedIndex = key;
       }
     });
+    setTimeout(setContactLinks(swiper), 0);
 
     // on changing slide, need to set select with new value
     swiper.on("slideChange", function (swiper) {
-      selectEl.selectedIndex = String(swiper.activeIndex);
+      const activeSlideIndex = swiper.activeIndex;
+      selectEl.selectedIndex = String(activeSlideIndex);
+      setContactLinks(swiper);
       selectEl.dispatchEvent(
         new CustomEvent("changeSelectFromSlider", {
           detail: {
@@ -11145,6 +11162,8 @@ heroSwipers.map((swiper) => {
         })
       );
     });
+
+    // update contact button text with slides
   }
 });
 

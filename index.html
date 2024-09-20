@@ -3,12 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="css/style.css" />
     <!-- SEO - разметка -->
     <title>Заголовок страницы</title>
@@ -124,7 +118,12 @@
           <p class="body-text">Московская обл, г. Истра, д. Лобаново, д. 230</p>
         </div>
         <!-- добавить ссылку на карту для построения маршрута -->
-        <a class="primary-button">Построить маршрут</a>
+        <a
+          target="_blank"
+          class="primary-button"
+          href="https://yandex.com/maps/-/CDDCJCMD"
+          >Построить маршрут</a
+        >
       </div>
     </div>
     <header class="wrapper main-header">
@@ -440,9 +439,9 @@
               </div>
             </div>
           </div>
-          <button class="primary-button project-button">
-            Задать вопрос по бане
-          </button>
+          <a target="_blank" class="primary-button project-button"
+            >Задать вопрос по бане
+          </a>
         </div>
         <div class="projects-block projects-sauna">
           <div class="custom-select">
@@ -534,9 +533,9 @@
               </div>
             </div>
           </div>
-          <button class="primary-button project-button">
-            Задать вопрос по сауне
-          </button>
+          <a target="_blank" class="primary-button project-button"
+            >Задать вопрос по сауне
+          </a>
         </div>
         <div class="projects-block projects-hammam">
           <div class="custom-select">
@@ -630,9 +629,9 @@
               </div>
             </div>
           </div>
-          <button class="primary-button project-button">
-            Задать вопрос по хаммаму
-          </button>
+          <a target="_blank" class="primary-button project-button"
+            >Задать вопрос по хаммаму
+          </a>
         </div>
         <div class="projects-block projects-kamyn">
           <div class="custom-select">
@@ -726,9 +725,9 @@
               </div>
             </div>
           </div>
-          <button class="primary-button project-button">
-            Задать вопрос по камину
-          </button>
+          <a target="_blank" class="primary-button project-button"
+            >Задать вопрос по камину
+          </a>
         </div>
       </section>
       <section id="contacts" class="wrapper contacts-section">
@@ -815,13 +814,47 @@
         <div class="contacts-map-grid">
           <div class="contacts-map">
             <!-- заглушка для карты -->
-            <img
-              class="contacts-map-embed"
-              src="./img/temporary/Rectangle_11760.jpg"
-            />
+            <div
+              style="
+                position: relative;
+                overflow: hidden;
+                height: 100%;
+                width: 100%;
+              "
+            >
+              <a
+                href="https://yandex.com/maps/1/moscow-and-moscow-oblast/?utm_medium=mapframe&utm_source=maps"
+                style="
+                  color: #eee;
+                  font-size: 12px;
+                  position: absolute;
+                  top: 0px;
+                "
+                >Москва и Московская область</a
+              ><a
+                href="https://yandex.com/maps/1/moscow-and-moscow-oblast/house/derevnya_lobanovo_230/Z04YdwdoSkAEQFtvfXRweHRkbQ==/?ll=37.108354%2C55.819879&utm_medium=mapframe&utm_source=maps&z=16"
+                style="
+                  color: #eee;
+                  font-size: 12px;
+                  position: absolute;
+                  top: 14px;
+                "
+                >Деревня Лобаново, 230 на карте Москвы и Московской области —
+                Яндекс Карты</a
+              ><iframe
+                src="https://yandex.com/map-widget/v1/?ll=37.108354%2C55.819879&mode=whatshere&utm_source=share&whatshere%5Bpoint%5D=37.108353%2C55.819879&whatshere%5Bzoom%5D=17&z=16"
+                width="100%"
+                height="100%"
+                frameborder="1"
+                allowfullscreen="true"
+                style="position: relative"
+              ></iframe>
+            </div>
           </div>
-          <!-- добавить ссылку на карту для построения маршрута -->
-          <a class="primary-button contacts-navigate-button"
+          <a
+            target="_blank"
+            href="https://yandex.com/maps/-/CDDCJCMD"
+            class="primary-button contacts-navigate-button"
             >Построить маршрут</a
           >
         </div>
