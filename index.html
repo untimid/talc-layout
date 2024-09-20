@@ -294,10 +294,13 @@
                 <img src="./img/temporary/photo_2024-08-28_14-43-25.jpg" />
               </div>
               <div class="swiper-slide">
-                <img src="./img/temporary/image (1).jpg" />
+                <img loading="lazy" src="./img/temporary/image (1).jpg" />
               </div>
               <div class="swiper-slide">
-                <img src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg" />
+                <img
+                  loading="lazy"
+                  src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
+                />
               </div>
             </div>
           </div>
@@ -348,14 +351,12 @@
         <div class="projects-block projects-banya">
           <div class="custom-select">
             <select id="banya-select">
-              <option value="баня 1">Баня 1</option>
-              <option value="баня 2">Баня 2</option>
-              <option value="баня 3">Баня 3</option>
+              <!-- Options generated from slides -->
             </select>
           </div>
           <div class="projects-slider projects-slider-banya">
             <!-- Slider main container -->
-            <div class="hero-swiper">
+            <div data-select-id="banya-select" class="hero-swiper">
               <div class="hero-swiper-previous">
                 <svg
                   viewBox="0 0 48 48"
@@ -424,7 +425,7 @@
                     <h2 class="headline-2">Баня 2</h2>
                     <p class="body-text">Описание бани 2</p>
                   </div>
-                  <img src="./img/temporary/image (1).jpg" />
+                  <img loading="lazy" src="./img/temporary/image (1).jpg" />
                 </div>
                 <div class="swiper-slide">
                   <div class="swiper-slide-content">
@@ -432,6 +433,7 @@
                     <p class="body-text">Описание бани 3</p>
                   </div>
                   <img
+                    loading="lazy"
                     src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
                   />
                 </div>
@@ -444,15 +446,11 @@
         </div>
         <div class="projects-block projects-sauna">
           <div class="custom-select">
-            <select id="sauna-select">
-              <option value="сауна 1">сауна 1</option>
-              <option value="сауна 2">сауна 2</option>
-              <option value="сауна 3">сауна 3</option>
-            </select>
+            <select id="sauna-select"></select>
           </div>
           <div class="projects-slider projects-slider-sauna">
             <!-- Slider main container -->
-            <div class="hero-swiper">
+            <div data-select-id="sauna-select" class="hero-swiper">
               <div class="hero-swiper-previous">
                 <svg
                   viewBox="0 0 48 48"
@@ -521,7 +519,7 @@
                     <h2 class="headline-2">Сауна 2</h2>
                     <p class="body-text">Описание сауны 2</p>
                   </div>
-                  <img src="./img/temporary/image.jpg" />
+                  <img loading="lazy" src="./img/temporary/image.jpg" />
                 </div>
                 <div class="swiper-slide">
                   <div class="swiper-slide-content">
@@ -529,6 +527,7 @@
                     <p class="body-text">Описание сауны 3</p>
                   </div>
                   <img
+                    loading="lazy"
                     src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
                   />
                 </div>
@@ -541,15 +540,13 @@
         </div>
         <div class="projects-block projects-hammam">
           <div class="custom-select">
-            <select id="banya-select">
-              <option value="хаммам 1">Хаммам 1</option>
-              <option value="хаммам 2">Хаммам 2</option>
-              <option value="хаммам 3">Хаммам 3</option>
+            <select id="hammam-select">
+              <!-- Options generated from slides -->
             </select>
           </div>
           <div class="projects-slider projects-slider-hammam">
             <!-- Slider main container -->
-            <div class="hero-swiper">
+            <div data-select-id="hammam-select" class="hero-swiper">
               <div class="hero-swiper-previous">
                 <svg
                   viewBox="0 0 48 48"
@@ -618,7 +615,7 @@
                     <h2 class="headline-2">Хаммам 2</h2>
                     <p class="body-text">50 м², Модель печи</p>
                   </div>
-                  <img src="./img/temporary/image (1).jpg" />
+                  <img loading="lazy" src="./img/temporary/image (1).jpg" />
                 </div>
                 <div class="swiper-slide">
                   <div class="swiper-slide-content">
@@ -626,6 +623,7 @@
                     <p class="body-text">50 м², Модель печи</p>
                   </div>
                   <img
+                    loading="lazy"
                     src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
                   />
                 </div>
@@ -638,15 +636,11 @@
         </div>
         <div class="projects-block projects-kamyn">
           <div class="custom-select">
-            <select id="kamyn-select">
-              <option value="камин 1">Камин 1</option>
-              <option value="камин 2">Камин 2</option>
-              <option value="камин 3">Камин 3</option>
-            </select>
+            <select id="kamyn-select"></select>
           </div>
           <div class="projects-slider projects-slider-kamyn">
             <!-- Slider main container -->
-            <div class="hero-swiper">
+            <div data-select-id="kamyn-select" class="hero-swiper">
               <div class="hero-swiper-previous">
                 <svg
                   viewBox="0 0 48 48"
@@ -717,7 +711,7 @@
                     <h2 class="headline-2">Камин 2</h2>
                     <p class="body-text">Описание камина</p>
                   </div>
-                  <img src="./img/temporary/image (1).jpg" />
+                  <img loading="lazy" src="./img/temporary/image (1).jpg" />
                 </div>
                 <div class="swiper-slide">
                   <div class="swiper-slide-content">
@@ -725,6 +719,7 @@
                     <p class="body-text">50 м², Модель печи</p>
                   </div>
                   <img
+                    loading="lazy"
                     src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
                   />
                 </div>
