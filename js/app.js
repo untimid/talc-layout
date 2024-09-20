@@ -11085,7 +11085,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const heroSwiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
+const heroSwipers = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
   // configure Swiper to use modules
   modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
   navigation: {
@@ -11094,11 +11094,72 @@ const heroSwiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swi
   },
 });
 
+// Sync Swiper with select
+// create options for select from slides
+heroSwipers.map((swiper) => {
+  const swiperEl = swiper.el;
+  const selectId = swiperEl.getAttribute("data-select-id");
+  swiper.linkedSelectId = selectId || null;
+  const slides = swiper.slides;
+  const selectEl = document.querySelector(`#${selectId}`);
+  // Subscribe slider selectors to slider changes
+  function handleSelectChange(e) {
+    const targetSelect = document
+      .querySelector(`#${e.detail.selectId}`)
+      .closest(".custom-select");
+    const targetOption = targetSelect.querySelectorAll(
+      `[data-index~="${e.detail.selectedIndex}"]`
+    );
+
+    if (targetOption) {
+      targetOption[0]?.click();
+    }
+  }
+  selectEl?.addEventListener("changeSelectFromSlider", handleSelectChange);
+
+  if (slides?.length && selectEl) {
+    slides.forEach((slide, key) => {
+      const optionEl = document.createElement("option");
+      optionEl.value = key;
+      optionEl.addEventListener("click", (e) => {
+        swiper.slideTo(key);
+      });
+      optionEl.innerHTML =
+        slide.querySelector(".headline-2").textContent ||
+        "укажите заголовок слайда";
+      selectEl.appendChild(optionEl);
+      if ([...slide.classList].indexOf("swiper-slide-active") > 0) {
+        selectEl.selectedIndex = key;
+      }
+    });
+
+    // on changing slide, need to set select with new value
+    swiper.on("slideChange", function (swiper) {
+      selectEl.selectedIndex = String(swiper.activeIndex);
+      selectEl.dispatchEvent(
+        new CustomEvent("changeSelectFromSlider", {
+          detail: {
+            selectId: selectEl.id,
+            selectedIndex: swiper.activeIndex,
+          },
+        })
+      );
+    });
+  }
+});
+
+// on select change slide
+
+// HANDLING POPUP MENU
 const menu = document.querySelector("#mobile-menu");
 const body = document.querySelector("body");
 const menuItems = document.querySelectorAll(".popup-menu-item");
 const hamburger = document.querySelector(".hamburger-button");
 const closeIcon = document.querySelector(".popup-menu-cross-button");
+
+/* If the user clicks anywhere outside the select box,
+then close all select boxes: */
+document.addEventListener("click", closeAllSelect);
 
 function toggleMenu() {
   if (menu.classList.contains("popup-menu-visible")) {
@@ -11118,62 +11179,72 @@ menuItems.forEach(function (menuItem) {
 });
 
 // CUSTOM SELECT LOGIC
-var x, i, j, l, ll, selElmnt, a, b, c;
+let customSelectsArr,
+  htmlSelect,
+  selectedOption,
+  customOptionsContainer,
+  customOption;
 /* Look for any elements with the class "custom-select": */
-x = document.getElementsByClassName("custom-select");
-l = x.length;
-for (i = 0; i < l; i++) {
-  selElmnt = x[i].getElementsByTagName("select")[0];
-  ll = selElmnt.length;
-  var duplicate = selElmnt.getElementsByClassName("select-selected");
-  console.log(selElmnt);
-  if (duplicate.length) {
-  }
+customSelectsArr = document.getElementsByClassName("custom-select");
+
+for (let i = 0; i < customSelectsArr.length; i++) {
+  htmlSelect = customSelectsArr[i].getElementsByTagName("select")[0];
   /* For each element, create a new DIV that will act as the selected item: */
-  a = document.createElement("DIV");
-  a.setAttribute("class", "select-selected");
-  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-  x[i].appendChild(a);
+  selectedOption = document.createElement("DIV");
+  selectedOption.setAttribute("class", "select-selected");
+  selectedOption.innerHTML =
+    htmlSelect.options[htmlSelect.selectedIndex].innerHTML;
+  customSelectsArr[i].appendChild(selectedOption);
   /* For each element, create a new DIV that will contain the option list: */
-  b = document.createElement("DIV");
-  b.setAttribute("class", "select-items select-hide");
-  for (j = 1; j < ll; j++) {
+  customOptionsContainer = document.createElement("DIV");
+  customOptionsContainer.setAttribute("class", "select-items select-hide");
+  for (let j = 0; j < htmlSelect.length; j++) {
     /* For each option in the original select element,
     create a new DIV that will act as an option item: */
-    c = document.createElement("DIV");
-    c.innerHTML = selElmnt.options[j].innerHTML;
-    c.addEventListener("click", function (e) {
+    customOption = document.createElement("DIV");
+    customOption.innerHTML = htmlSelect.options[j].innerHTML;
+    customOption.dataset.index = j;
+
+    customOptionsContainer.appendChild(customOption);
+
+    customOption.addEventListener("click", function (e) {
+      const targetEl = e.target;
       /* When an item is clicked, update the original select box,
         and the selected item: */
-      var y, i, k, s, h, sl, yl;
-      s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-      sl = s.length;
-      h = this.parentNode.previousSibling;
-      for (i = 0; i < sl; i++) {
-        if (s.options[i].innerHTML == this.innerHTML) {
-          s.selectedIndex = i;
-          h.innerHTML = this.innerHTML;
-          y = this.parentNode.getElementsByClassName("same-as-selected");
+      let y, k, htmlSelectUpdate, customSelectedOption, yl;
+      htmlSelectUpdate =
+        targetEl.parentNode.parentNode.getElementsByTagName("select")[0];
+
+      let optionsAmount = htmlSelectUpdate.length;
+
+      customSelectedOption = targetEl.parentNode.previousSibling;
+      for (let i = 0; i < optionsAmount; i++) {
+        if (htmlSelectUpdate.options[i].innerHTML == targetEl.innerHTML) {
+          htmlSelectUpdate.selectedIndex = i;
+          htmlSelectUpdate[i].click();
+          customSelectedOption.innerHTML = targetEl.innerHTML;
+          y = targetEl.parentNode.getElementsByClassName("same-as-selected");
           yl = y.length;
           for (k = 0; k < yl; k++) {
             y[k].removeAttribute("class");
           }
-          this.setAttribute("class", "same-as-selected");
+          targetEl.setAttribute("class", "same-as-selected");
           break;
         }
       }
-      h.click();
+      customSelectedOption.click();
     });
-    b.appendChild(c);
   }
-  x[i].appendChild(b);
-  a.addEventListener("click", function (e) {
+  customSelectsArr[i].appendChild(customOptionsContainer);
+
+  selectedOption.addEventListener("click", function (e) {
     /* When the select box is clicked, close any other select boxes,
     and open/close the current select box: */
+    const targetEl = e.target;
     e.stopPropagation();
-    closeAllSelect(this);
-    this.nextSibling.classList.toggle("select-hide");
-    this.classList.toggle("select-arrow-active");
+    closeAllSelect(targetEl);
+    targetEl.nextSibling.classList.toggle("select-hide");
+    targetEl.classList.toggle("select-arrow-active");
   });
 }
 
@@ -11203,10 +11274,6 @@ function closeAllSelect(elmnt) {
     }
   }
 }
-
-/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
-document.addEventListener("click", closeAllSelect);
 
 /******/ })()
 ;

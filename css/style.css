@@ -1180,11 +1180,15 @@ a {
     margin: 0 0 0 auto;
     width: auto;
   }
+  .hero-swiper {
+    position: relative;
+  }
   .projects-block .custom-select {
     position: absolute;
     bottom: 0;
     margin-bottom: 0;
     width: 348px;
+    z-index: 500;
   }
   .projects-filter-select {
     visibility: hidden;
