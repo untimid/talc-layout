@@ -11089,10 +11089,37 @@ const WHATSAPP_PHONE = "+79104256479";
 
 const heroSwipers = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
   // configure Swiper to use modules
-  modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
+  spaceBetween: 0,
+  loop: true, // infinite loop from
+  initialSlide: 1, // start from 2nd slide to remove bug
+  breakpoints: {
+    // when window width is >= 390px
+    390: {
+      centeredSlides: true,
+      slidesPerView: 1.1,
+      spaceBetween: 8,
+    },
+    // when window width is >= 768px
+    768: {
+      centeredSlides: true,
+      slidesPerView: 1.128,
+      spaceBetween: 8,
+    },
+    // when window width is >= 1200px
+    1200: {
+      centeredSlides: true,
+      slidesPerView: 1.134,
+      spaceBetween: 8,
+    },
+  },
+  modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation, swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Pagination],
   navigation: {
     nextEl: ".hero-swiper-next",
     prevEl: ".hero-swiper-previous",
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
   },
 });
 
