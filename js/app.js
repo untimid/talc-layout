@@ -1,15 +1,42 @@
 import Swiper from "swiper";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 
 const WHATSAPP_PHONE = "+79104256479";
 
 const heroSwipers = new Swiper(".hero-swiper", {
   // configure Swiper to use modules
-  modules: [Navigation],
+  spaceBetween: 0,
+  loop: true, // infinite loop from
+  initialSlide: 1, // start from 2nd slide to remove bug
+  breakpoints: {
+    // when window width is >= 390px
+    390: {
+      centeredSlides: true,
+      slidesPerView: 1.1,
+      spaceBetween: 8,
+    },
+    // when window width is >= 768px
+    768: {
+      centeredSlides: true,
+      slidesPerView: 1.128,
+      spaceBetween: 8,
+    },
+    // when window width is >= 1200px
+    1200: {
+      centeredSlides: true,
+      slidesPerView: 1.134,
+      spaceBetween: 8,
+    },
+  },
+  modules: [Navigation, Pagination],
   navigation: {
     nextEl: ".hero-swiper-next",
     prevEl: ".hero-swiper-previous",
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
   },
 });
 
