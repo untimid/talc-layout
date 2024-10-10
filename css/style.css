@@ -1421,8 +1421,8 @@ button.filter-link {
   }
 
   .swiper-slide img {
-    height: 100%;
-    width: auto;
+    width: 100%;
+    height: auto;
   }
   .swiper-slide-content {
     left: 24px;
