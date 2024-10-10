@@ -1257,7 +1257,7 @@ button.filter-link {
 }
 
 .spoiler.spoiler-closed {
-  max-height: 155px;
+  max-height: 195px;
   overflow: hidden;
   position: relative;
   background-color: var(--main-white);
@@ -1274,6 +1274,8 @@ button.filter-link {
   margin-right: auto;
   margin-bottom: 0;
   cursor: pointer;
+  font-size: 16px;
+  line-height: 21px;
 }
 .spoiler-activator:hover {
   opacity: 0.8;
@@ -1439,6 +1441,10 @@ button.filter-link {
   .hero-swiper-next {
     right: 24px;
     top: 50%;
+  }
+
+  .spoiler.spoiler-closed {
+    max-height: 155px;
   }
 
   .swiper-pagination {
