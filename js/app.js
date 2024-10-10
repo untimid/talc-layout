@@ -11087,7 +11087,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const WHATSAPP_PHONE = "+79104256479";
 
-const heroSwipers = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
+new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
   // configure Swiper to use modules
   spaceBetween: 0,
   loop: true, // infinite loop from
@@ -11123,78 +11123,131 @@ const heroSwipers = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-sw
   },
 });
 
-// Sync Swiper with select
+// Sync tabs select with cta button
 // create options for select from slides
-heroSwipers.map((swiper) => {
-  const swiperEl = swiper.el;
-  const selectId = swiperEl.getAttribute("data-select-id");
-  swiper.linkedSelectId = selectId || null;
-  const slides = swiper.slides;
-  const selectEl = document.querySelector(`#${selectId}`);
-  // Subscribe slider selectors to slider changes
-  function handleSelectChange(e) {
-    const targetSelect = document
-      .querySelector(`#${e.detail.selectId}`)
-      .closest(".custom-select");
-    const targetOption = targetSelect.querySelectorAll(
-      `[data-index~="${e.detail.selectedIndex}"]`
-    );
+// TODO: rewrite to get string and generate link +
+// make project select handler
+function updateContactLink(linkEl) {
+  const projectsBlock = linkEl.closest(".projects-block");
+  const activeProject = projectsBlock.querySelector(
+    ".project-tab-selector.active"
+  );
+  const projectName = activeProject?.textContent.trim() || null;
+  linkEl.href = projectName
+    ? `https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте, расскажите пожалуйста подробнее о проекте "${projectName}"`
+    : `https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте, расскажите пожалуйста подробнее о ваших услугах"`;
+}
 
-    if (targetOption) {
-      targetOption[0]?.click();
+const ctaButtons = document.querySelectorAll(".project-button");
+ctaButtons.forEach((button) => updateContactLink(button));
+
+function openTab(
+  tabId,
+  tabClass,
+  elementActivator,
+  elementActivatorClass,
+  closeSiblings = true
+) {
+  const targetTab = document.getElementById(tabId);
+  if (!targetTab) {
+    console.warn("укажите id для выбора проекта");
+    return;
+  }
+  const tabs =
+    [...targetTab.parentNode.childNodes].filter((node) =>
+      node?.classList?.contains(tabClass)
+    ) || [];
+  tabs.forEach((tab) => {
+    // if got active class, remove it
+    if (closeSiblings && tab.id !== tabId && tab.classList.contains("active")) {
+      tab.classList.remove("active");
     }
-  }
-  selectEl?.addEventListener("changeSelectFromSlider", handleSelectChange);
-
-  function setContactLinks(swiper) {
-    const activeSlideIndex = swiper.activeIndex;
-    const projectsBlock = swiperEl.closest(".projects-block");
-    const contactLink = projectsBlock.querySelector(".project-button");
-    const currentSlide = swiper.slides[activeSlideIndex];
-    const projectName =
-      currentSlide.querySelector(".headline-2").textContent || null;
-    contactLink.href = projectName
-      ? `https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте, расскажите пожалуйста подробнее о проекте "${projectName}"`
-      : `https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте, расскажите пожалуйста подробнее о ваших услугах"`;
-  }
-
-  if (slides?.length && selectEl) {
-    slides.forEach((slide, key) => {
-      const optionEl = document.createElement("option");
-      optionEl.value = key;
-      optionEl.addEventListener("click", (e) => {
-        swiper.slideTo(key);
-      });
-      optionEl.innerHTML =
-        slide.querySelector(".headline-2").textContent ||
-        "укажите заголовок слайда";
-      selectEl.appendChild(optionEl);
-      if ([...slide.classList].indexOf("swiper-slide-active") > 0) {
-        selectEl.selectedIndex = key;
+    // if got same id as target, set active class
+    if (tab.id === tabId) {
+      if (!tab.classList.contains("active")) {
+        tab.classList.add("active");
       }
-    });
-    setTimeout(setContactLinks(swiper), 0);
-
-    // on changing slide, need to set select with new value
-    swiper.on("slideChange", function (swiper) {
-      const activeSlideIndex = swiper.activeIndex;
-      selectEl.selectedIndex = String(activeSlideIndex);
-      setContactLinks(swiper);
-      selectEl.dispatchEvent(
-        new CustomEvent("changeSelectFromSlider", {
-          detail: {
-            selectId: selectEl.id,
-            selectedIndex: swiper.activeIndex,
-          },
-        })
+      // reset buttons active status
+      const buttons = [...elementActivator.parentNode.childNodes].filter((el) =>
+        el?.classList?.contains(elementActivatorClass)
       );
-    });
+      buttons.forEach((button) => {
+        if (button?.classList?.contains("active")) {
+          button.classList.remove("active");
+        }
+      });
+      // set new active button after changing tab success
+      elementActivator.classList.add("active");
+      const projectsBlock = elementActivator.closest(".projects-block");
+      const contactLink = projectsBlock.querySelector(".project-button");
+      updateContactLink(contactLink);
+    }
+  });
+}
+// handle tab selectors for projects
+document.querySelectorAll(".project-tab-selector")?.forEach((button) => {
+  button.addEventListener("click", (e) =>
+    openTab(
+      button.dataset.tabid,
+      "project-tab",
+      e.target,
+      "project-tab-selector"
+    )
+  );
+});
+// handle tab selectors for project types
+const PORTFOLIO_OPTIONS = {
+  all: ["banyas", "saunas", "hammams", "camins"],
+  banyas: ["banyas"],
+  saunas: ["saunas"],
+  hammams: ["hammams"],
+  camins: ["camins"],
+};
+// on switch we should:
+// - sync filter and selector
+// - if "all" selected, activate all tabs
+// - if explicit tab selected, activate it
+const portfolioSelector = document.getElementById("filter-select");
+const options = [...portfolioSelector.options];
+options.forEach((option) =>
+  option.addEventListener("click", (e) => {
+    const value = e.target.value;
+    const selectors = [...document.querySelectorAll(".portfolio-tab-selector")];
+    console.log(selectors);
+    const targetSelector = selectors.find((sel) => sel.dataset.tabid === value);
+    targetSelector.click();
+  })
+);
 
-    // update contact button text with slides
+document.querySelectorAll(".portfolio-tab-selector")?.forEach((button) => {
+  const option = button.dataset.tabid;
+  if (PORTFOLIO_OPTIONS.hasOwnProperty(option)) {
+    button.addEventListener("click", (e) => {
+      // sync with select
+      const mobileSelect = document.getElementById("filter-select");
+      const mobileOption = [...mobileSelect.options]?.find(
+        (op) => op.value === option
+      );
+      const optionIndex = mobileOption.index || 0;
+      const customOption = mobileSelect
+        .closest(".custom-select")
+        .querySelectorAll(`[data-index="${optionIndex}"]`);
+      customOption?.[0]?.click();
+
+      PORTFOLIO_OPTIONS[option].forEach((op) => {
+        option === "all"
+          ? openTab(
+              op,
+              "portfolio-tab",
+              e.target,
+              "portfolio-tab-selector",
+              false
+            )
+          : openTab(op, "portfolio-tab", e.target, "portfolio-tab-selector");
+      });
+    });
   }
 });
-
-// on select change slide
 
 // HANDLING POPUP MENU
 const menu = document.querySelector("#mobile-menu");
@@ -11320,6 +11373,47 @@ function closeAllSelect(elmnt) {
     }
   }
 }
+
+// SPOILER LOGIC
+// to use spoiler can add 'spoiler' class to div and data-maxheight attr
+const CLOSED_TEXT = "Показать еще проекты";
+const OPENED_TEXT = "Свернуть";
+const CLOSED_CLASS = "spoiler-closed";
+// if height of element greater than MAX_HEIGHT, cut with spoiler
+const spoilers = document.querySelectorAll(".spoiler");
+spoilers.forEach((spoiler) => {
+  if (spoiler.offsetHeight) {
+    if (!spoiler.classList.contains(CLOSED_CLASS)) {
+      spoiler.classList.add(CLOSED_CLASS);
+    }
+    const spoilerActivator = document.createElement("button");
+    const spoilerBottomOverlay = document.createElement("div");
+    spoilerActivator.textContent = CLOSED_TEXT;
+    spoilerBottomOverlay.classList = `spoiler-overlay ${CLOSED_CLASS}`;
+    spoilerActivator.classList = `spoiler-activator  ${CLOSED_CLASS}`;
+    spoilerActivator.addEventListener("click", (e) => toggleSpoiler(e));
+    spoiler.appendChild(spoilerBottomOverlay);
+    spoiler.appendChild(spoilerActivator);
+  }
+});
+
+function toggleSpoiler(e) {
+  const toggler = e.target;
+  const spoiler = toggler.closest(".spoiler");
+  if (spoiler.classList.contains(CLOSED_CLASS)) {
+    spoiler.classList.remove(CLOSED_CLASS);
+    toggler.classList.remove(CLOSED_CLASS);
+    toggler.textContent = OPENED_TEXT;
+  } else {
+    spoiler.classList.add(CLOSED_CLASS);
+    toggler.classList.add(CLOSED_CLASS);
+    toggler.textContent = CLOSED_TEXT;
+  }
+  console.log(spoiler);
+  console.log("toggle");
+}
+// if less than max height, remove spoiler control
+// add activation on click to show cut content
 
 /******/ })()
 ;

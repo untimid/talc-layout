@@ -925,6 +925,40 @@ a {
   cursor: default;
 }
 
+.projects-block.portfolio-tab {
+  display: none;
+  visibility: hidden;
+}
+.projects-block.portfolio-tab.active {
+  display: flex;
+  visibility: visible;
+}
+
+.projects-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-tabs-controls {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8px 16px 12px;
+}
+
+.project-tabs-controls > button {
+  margin: 0 12px 12px 0;
+}
+
+.project-tabs-controls > button:last-child {
+  margin: 0 0 12px 0;
+}
+
+button.filter-link {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
 .swiper-slide img {
   position: absolute;
   top: 0;
@@ -991,12 +1025,29 @@ a {
   flex-direction: column;
   align-items: stretch;
 }
-.projects-block .custom-select {
+
+.project-tabs {
   margin-bottom: 16px;
+  height: 640px;
+  position: relative;
+  overflow-y: hidden;
 }
-.projects-slider {
-  margin-bottom: 16px;
+
+.project-tab {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  display: none;
 }
+
+.project-tab.active {
+  display: flex;
+  opacity: 1;
+}
+
 .projects-block .project-button {
   max-width: calc(100% - 32px);
   margin: 0 16px;
@@ -1199,10 +1250,64 @@ a {
 }
 /* end of custom select styles */
 
+.spoiler {
+  max-height: 1000px;
+  overflow: hidden;
+  position: relative;
+}
+
+.spoiler.spoiler-closed {
+  max-height: 155px;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--main-white);
+}
+
+.spoiler-activator {
+  all: unset;
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  background-color: var(--main-white);
+  border-bottom: solid 2px var(--main-black);
+  color: var(--main-black);
+  margin-right: auto;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+.spoiler-activator:hover {
+  opacity: 0.8;
+}
+.spoiler-activator.spoiler-closed {
+  color: var(--accent-blue);
+  border-bottom: solid 2px var(--accent-blue);
+}
+
+.spoiler:not(.spoiler-closed) > .spoiler-overlay {
+  display: flex;
+  position: static;
+  height: 40px;
+}
+
+.spoiler-overlay {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  height: 54px;
+  background-color: var(--main-white);
+  bottom: 0;
+}
+
 @media only screen and (min-width: 390px) {
   .wrapper {
     width: calc(100% - 24px);
     margin: 0 12px;
+  }
+  .portfolio-tab {
+    overflow: visible;
+  }
+  .project-tabs {
+    overflow: visible;
   }
   .hero-swiper {
     position: relative;
@@ -1301,6 +1406,18 @@ a {
     visibility: visible;
     margin-bottom: 24px;
   }
+
+  .project-tabs {
+    height: 372px;
+    width: 100vw;
+    overflow-y: visible;
+  }
+
+  .projects-actions {
+    flex-direction: row;
+    width: 100%;
+  }
+
   .swiper-slide img {
     height: auto;
     width: 100%;
@@ -1336,10 +1453,15 @@ a {
     justify-content: center;
   }
 
-  .projects-block > a.project-button {
+  .projects-block a.project-button {
     margin: 0 0 0 auto;
     display: flex;
     width: auto;
+    white-space: nowrap;
+    min-width: auto;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    margin-top: 8px;
   }
   .hero-swiper {
     position: relative;
@@ -1348,13 +1470,7 @@ a {
     width: 100vw;
     height: 372px;
   }
-  .projects-block .custom-select {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 0;
-    width: 348px;
-    z-index: 500;
-  }
+
   .projects-filter-select {
     visibility: hidden;
     display: none;
@@ -1447,6 +1563,9 @@ a {
     display: grid;
     grid-template-columns: auto 525px;
   }
+  .project-tabs {
+    height: 372px;
+  }
   .hero-slider {
     margin-bottom: 24px;
   }
@@ -1466,6 +1585,9 @@ a {
     visibility: visible;
     display: flex;
     justify-content: center;
+  }
+  .project-tabs {
+    height: 602px;
   }
   .hero-swiper {
     height: 602px;
