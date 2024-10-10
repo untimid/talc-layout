@@ -13,11 +13,6 @@
     <meta property="og:image" content="" />
     <meta property="og:image:alt" content="" />
 
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="icon.png" />
-
-    <link rel="manifest" href="site.webmanifest" />
     <meta name="theme-color" content="#fafafa" />
   </head>
 
@@ -304,6 +299,9 @@
               <div class="swiper-slide">
                 <img loading="lazy" src="./img/temporary/image (1).jpg" />
               </div>
+              <div class="swiper-slide">
+                <img loading="lazy" src="./img/temporary/image (1).jpg" />
+              </div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
@@ -335,31 +333,54 @@
       <section id="portfolio" class="wrapper projects-section">
         <!-- фильтры для десктопа и таблета -->
         <div class="projects-filter">
-          <a class="filter-link active">Все проекты</a>
-          <a class="filter-link">Бани</a>
-          <a class="filter-link">Сауны</a>
-          <a class="filter-link">Хаммамы</a>
-          <a class="filter-link">Камины</a>
+          <button
+            data-tabid="all"
+            class="portfolio-tab-selector active filter-link"
+          >
+            Все проекты
+          </button>
+          <button
+            data-tabid="banyas"
+            class="portfolio-tab-selector filter-link"
+          >
+            Бани
+          </button>
+          <button
+            data-tabid="saunas"
+            class="portfolio-tab-selector filter-link"
+          >
+            Сауны
+          </button>
+          <button
+            data-tabid="hammams"
+            class="portfolio-tab-selector filter-link"
+          >
+            Хаммамы
+          </button>
+          <button
+            data-tabid="camins"
+            class="portfolio-tab-selector filter-link"
+          >
+            Камины
+          </button>
         </div>
         <!-- фильтры для мобилки в селекте -->
         <div class="custom-select projects-filter-select blue-select-border">
           <select id="filter-select">
-            <option value="все проекты">Все проекты</option>
-            <option value="бани">Бани</option>
-            <option value="сауны">Сауны</option>
-            <option value="хаммамы">Хаммамы</option>
-            <option value="камины">Камины</option>
+            <option value="all">Все проекты</option>
+            <option value="banyas">Бани</option>
+            <option value="saunas">Сауны</option>
+            <option value="hammams">Хаммамы</option>
+            <option value="camins">Камины</option>
           </select>
         </div>
-        <div class="projects-block projects-banya">
-          <div class="custom-select">
-            <select id="banya-select">
-              <!-- Options generated from slides -->
-            </select>
-          </div>
-          <div class="projects-slider projects-slider-banya">
-            <!-- Slider main container -->
-            <div data-select-id="banya-select" class="hero-swiper">
+        <div
+          id="banyas"
+          class="portfolio-tab active projects-block projects-banya"
+        >
+          <div class="project-tabs projects-slider-banya">
+            <!-- Projects tabs with sliders -->
+            <div id="banya-project-1" class="hero-swiper project-tab active">
               <div class="hero-swiper-previous">
                 <svg
                   viewBox="0 0 48 48"
@@ -432,6 +453,205 @@
                 </div>
                 <div class="swiper-slide">
                   <div class="swiper-slide-content">
+                    <h2 class="headline-2">Баня 22</h2>
+                    <p class="body-text">Отличная баня</p>
+                  </div>
+                  <img src="./img/temporary/photo_2024-08-28_14-43-25.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Баня 3</h2>
+                    <p class="body-text">Описание бани 3</p>
+                  </div>
+                  <img
+                    loading="lazy"
+                    src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
+                  />
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+            <div id="banya-project-2" class="hero-swiper project-tab">
+              <div class="hero-swiper-previous">
+                <svg
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#a)">
+                    <circle
+                      cx="24"
+                      cy="24"
+                      r="24"
+                      transform="matrix(-1 0 0 1 48 0)"
+                      fill="currentColor"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M29.179 12.821c-.601-.6-1.547-.647-2.2-.138l-.157.138-10 10c-.601.601-.648 1.547-.14 2.2l.14.157 10 10a1.667 1.667 0 0 0 2.495-2.2l-.138-.157L20.359 24l8.82-8.822c.6-.6.647-1.546.138-2.2l-.138-.157Z"
+                      fill="#fff"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="a">
+                      <path
+                        fill="#fff"
+                        transform="matrix(-1 0 0 1 48 0)"
+                        d="M0 0h48v48H0z"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <div class="hero-swiper-next">
+                <svg
+                  fill="none"
+                  viewBox="0 0 48 48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#a)">
+                    <circle cx="24" cy="24" r="24" fill="currentColor" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M18.822 12.822c.6-.601 1.546-.648 2.2-.14l.157.14 10 10c.6.6.647 1.546.138 2.2l-.139.157-10 10a1.667 1.667 0 0 1-2.495-2.2l.139-.157L27.642 24l-8.82-8.822c-.601-.6-.648-1.546-.14-2.2l.14-.156Z"
+                      fill="#fff"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="a">
+                      <path fill="#fff" d="M0 0h48v48H0z" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Баня 32</h2>
+                    <p class="body-text">Проект 2</p>
+                  </div>
+                  <img src="./img/temporary/photo_2024-08-28_14-43-25.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Баня 2</h2>
+                    <p class="body-text">Описание бани 2</p>
+                  </div>
+                  <img
+                    loading="lazy"
+                    src="./img/temporary/photo_2024-08-28_14-43-25.jpg"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Баня 22</h2>
+                    <p class="body-text">Отличная баня</p>
+                  </div>
+                  <img src="./img/temporary/photo_2024-08-28_14-43-25.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Баня 3</h2>
+                    <p class="body-text">Описание бани 3</p>
+                  </div>
+                  <img
+                    loading="lazy"
+                    src="./img/temporary/photo_2024-08-28_14-43-25.jpg"
+                  />
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+            <div id="banya-project-3" class="hero-swiper project-tab">
+              <div class="hero-swiper-previous">
+                <svg
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#a)">
+                    <circle
+                      cx="24"
+                      cy="24"
+                      r="24"
+                      transform="matrix(-1 0 0 1 48 0)"
+                      fill="currentColor"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M29.179 12.821c-.601-.6-1.547-.647-2.2-.138l-.157.138-10 10c-.601.601-.648 1.547-.14 2.2l.14.157 10 10a1.667 1.667 0 0 0 2.495-2.2l-.138-.157L20.359 24l8.82-8.822c.6-.6.647-1.546.138-2.2l-.138-.157Z"
+                      fill="#fff"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="a">
+                      <path
+                        fill="#fff"
+                        transform="matrix(-1 0 0 1 48 0)"
+                        d="M0 0h48v48H0z"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <div class="hero-swiper-next">
+                <svg
+                  fill="none"
+                  viewBox="0 0 48 48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#a)">
+                    <circle cx="24" cy="24" r="24" fill="currentColor" />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M18.822 12.822c.6-.601 1.546-.648 2.2-.14l.157.14 10 10c.6.6.647 1.546.138 2.2l-.139.157-10 10a1.667 1.667 0 0 1-2.495-2.2l.139-.157L27.642 24l-8.82-8.822c-.601-.6-.648-1.546-.14-2.2l.14-.156Z"
+                      fill="#fff"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="a">
+                      <path fill="#fff" d="M0 0h48v48H0z" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Баня 1</h2>
+                    <p class="body-text">50 м², Модель печи</p>
+                  </div>
+                  <img
+                    src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Баня 2</h2>
+                    <p class="body-text">Описание бани 2</p>
+                  </div>
+                  <img
+                    loading="lazy"
+                    src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Баня 22</h2>
+                    <p class="body-text">Отличная баня</p>
+                  </div>
+                  <img
+                    src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
                     <h2 class="headline-2">Баня 3</h2>
                     <p class="body-text">Описание бани 3</p>
                   </div>
@@ -444,15 +664,73 @@
               <div class="swiper-pagination"></div>
             </div>
           </div>
-          <a target="_blank" class="primary-button project-button"
-            >Задать вопрос по бане
-          </a>
-        </div>
-        <div class="projects-block projects-sauna">
-          <div class="custom-select">
-            <select id="sauna-select"></select>
+          <div class="projects-actions">
+            <div class="project-tabs-controls spoiler">
+              <button
+                class="filter-link project-tab-selector active"
+                data-tabid="banya-project-1"
+              >
+                Проект 1
+              </button>
+              <button
+                class="filter-link project-tab-selector"
+                data-tabid="banya-project-2"
+              >
+                Проект 2
+              </button>
+              <button
+                class="filter-link project-tab-selector"
+                data-tabid="banya-project-3"
+              >
+                Проект 3
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+              <button class="project-tab-selector filter-link">
+                не проект
+              </button>
+            </div>
+            <a target="_blank" class="primary-button project-button"
+              >Задать вопрос по бане
+            </a>
           </div>
-          <div class="projects-slider projects-slider-sauna">
+        </div>
+        <div
+          id="saunas"
+          class="portfolio-tab active projects-block projects-sauna"
+        >
+          <div class="project-tabs projects-slider-sauna">
             <!-- Slider main container -->
             <div data-select-id="sauna-select" class="hero-swiper">
               <div class="hero-swiper-previous">
@@ -535,6 +813,13 @@
                     src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
                   />
                 </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Сауна 4</h2>
+                    <p class="body-text">Описание 4 сауны</p>
+                  </div>
+                  <img loading="lazy" src="./img/temporary/image.jpg" />
+                </div>
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -543,13 +828,11 @@
             >Задать вопрос по сауне
           </a>
         </div>
-        <div class="projects-block projects-hammam">
-          <div class="custom-select">
-            <select id="hammam-select">
-              <!-- Options generated from slides -->
-            </select>
-          </div>
-          <div class="projects-slider projects-slider-hammam">
+        <div
+          id="hammams"
+          class="portfolio-tab active projects-block projects-hammam"
+        >
+          <div class="project-tabs projects-slider-hammam">
             <!-- Slider main container -->
             <div data-select-id="hammam-select" class="hero-swiper">
               <div class="hero-swiper-previous">
@@ -632,6 +915,16 @@
                     src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
                   />
                 </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Хаммам 4</h2>
+                    <p class="body-text">Всем хамамам хамам</p>
+                  </div>
+                  <img
+                    loading="lazy"
+                    src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
+                  />
+                </div>
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -640,11 +933,11 @@
             >Задать вопрос по хаммаму
           </a>
         </div>
-        <div class="projects-block projects-kamyn">
-          <div class="custom-select">
-            <select id="kamyn-select"></select>
-          </div>
-          <div class="projects-slider projects-slider-kamyn">
+        <div
+          id="camins"
+          class="portfolio-tab active projects-block projects-kamyn"
+        >
+          <div class="project-tabs projects-slider-kamyn">
             <!-- Slider main container -->
             <div data-select-id="kamyn-select" class="hero-swiper">
               <div class="hero-swiper-previous">
@@ -728,6 +1021,13 @@
                     loading="lazy"
                     src="./img/temporary/photo_2024-08-28_14-45-43 (2).jpg"
                   />
+                </div>
+                <div class="swiper-slide">
+                  <div class="swiper-slide-content">
+                    <h2 class="headline-2">Камин 4</h2>
+                    <p class="body-text">Тепло и уютно</p>
+                  </div>
+                  <img loading="lazy" src="./img/temporary/image (1).jpg" />
                 </div>
               </div>
               <div class="swiper-pagination"></div>
