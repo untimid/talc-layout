@@ -1028,7 +1028,7 @@ button.filter-link {
 
 .project-tabs {
   margin-bottom: 16px;
-  height: 640px;
+  height: 100%;
   position: relative;
   overflow-y: hidden;
 }
@@ -1410,7 +1410,7 @@ button.filter-link {
   }
 
   .project-tabs {
-    height: 372px;
+    height: 100%;
     width: 100vw;
     overflow-y: visible;
   }
@@ -1421,8 +1421,8 @@ button.filter-link {
   }
 
   .swiper-slide img {
-    height: auto;
-    width: 100%;
+    height: 100%;
+    width: auto;
   }
   .swiper-slide-content {
     left: 24px;
@@ -1570,7 +1570,7 @@ button.filter-link {
     grid-template-columns: auto 525px;
   }
   .project-tabs {
-    height: 372px;
+    height: 100%;
   }
   .hero-slider {
     margin-bottom: 24px;
@@ -1593,10 +1593,10 @@ button.filter-link {
     justify-content: center;
   }
   .project-tabs {
-    height: 602px;
+    height: 100%;
   }
   .hero-swiper {
-    height: 602px;
+    height: 576px;
   }
   .swiper-pagination {
     bottom: 24px;
@@ -1620,5 +1620,31 @@ button.filter-link {
   }
   .contacts-wrapper .headline-2 {
     margin-bottom: 40px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .hero-swiper {
+    height: 576px;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  .hero-swiper {
+    height: 614px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .hero-swiper {
+    height: 720px;
+  }
+}
+@media only screen and (min-width: 1536px) {
+  .hero-swiper {
+    height: 649px;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .hero-swiper {
+    height: 864px;
   }
 }

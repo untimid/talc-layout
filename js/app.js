@@ -11091,7 +11091,6 @@ new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
   // configure Swiper to use modules
   spaceBetween: 0,
   loop: true, // infinite loop from
-  initialSlide: 1, // start from 2nd slide to remove bug
   breakpoints: {
     // when window width is >= 390px
     390: {
@@ -11109,6 +11108,31 @@ new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
     1200: {
       centeredSlides: true,
       slidesPerView: 1.134,
+      spaceBetween: 8,
+    },
+    1280: {
+      centeredSlides: true,
+      slidesPerView: 1.228,
+      spaceBetween: 8,
+    },
+    1366: {
+      centeredSlides: true,
+      slidesPerView: 1.23,
+      spaceBetween: 8,
+    },
+    1440: {
+      centeredSlides: true,
+      slidesPerView: 1.08,
+      spaceBetween: 8,
+    },
+    1536: {
+      centeredSlides: true,
+      slidesPerView: 1.222,
+      spaceBetween: 8,
+    },
+    1920: {
+      centeredSlides: true,
+      slidesPerView: 1.234,
       spaceBetween: 8,
     },
   },
