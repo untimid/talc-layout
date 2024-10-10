@@ -11091,6 +11091,9 @@ new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
   // configure Swiper to use modules
   spaceBetween: 0,
   loop: true, // infinite loop from
+  initialSlide: 1,
+  slidesPerGroup: 1,
+  maxBackfaceHiddenSlides: 4,
   breakpoints: {
     // when window width is >= 390px
     390: {
@@ -11101,7 +11104,7 @@ new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
     // when window width is >= 768px
     768: {
       centeredSlides: true,
-      slidesPerView: 1.128,
+      slidesPerView: 1.16,
       spaceBetween: 8,
     },
     // when window width is >= 1200px
@@ -11132,7 +11135,7 @@ new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
     },
     1920: {
       centeredSlides: true,
-      slidesPerView: 1.234,
+      slidesPerView: 1.2,
       spaceBetween: 8,
     },
   },
@@ -11197,7 +11200,6 @@ function openTab(
       const buttons = [...elementActivator.parentNode.childNodes].filter((el) =>
         el?.classList?.contains(elementActivatorClass)
       );
-      console.log(buttons);
       buttons.forEach((button) => {
         if (button?.classList?.contains("active")) {
           button.classList.remove("active");
@@ -11237,7 +11239,6 @@ options.forEach((option) =>
   option.addEventListener("click", (e) => {
     const value = e.target.value;
     const selectors = [...document.querySelectorAll(".portfolio-tab-selector")];
-    console.log(selectors);
     const targetSelector = selectors.find((sel) => sel.dataset.tabid === value);
     targetSelector.click();
   })
