@@ -11123,23 +11123,25 @@ new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
   },
 });
 
-// Sync tabs select with cta button
-// create options for select from slides
-// TODO: rewrite to get string and generate link +
-// make project select handler
-function updateContactLink(linkEl) {
-  const projectsBlock = linkEl.closest(".projects-block");
+// CTA click handler
+function handleCTAClick(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  const projectsBlock = e.target.closest(".projects-block");
   const activeProject = projectsBlock.querySelector(
     ".project-tab-selector.active"
   );
   const projectName = activeProject?.textContent.trim() || null;
-  linkEl.href = projectName
+  const contactLink = projectName
     ? `https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте, расскажите пожалуйста подробнее о проекте "${projectName}"`
     : `https://wa.me/${WHATSAPP_PHONE}?text=Здравствуйте, расскажите пожалуйста подробнее о ваших услугах"`;
+  window.open(contactLink, "_blank");
 }
 
 const ctaButtons = document.querySelectorAll(".project-button");
-ctaButtons.forEach((button) => updateContactLink(button));
+ctaButtons.forEach((button) =>
+  button.addEventListener("click", handleCTAClick)
+);
 
 function openTab(
   tabId,
@@ -11171,6 +11173,7 @@ function openTab(
       const buttons = [...elementActivator.parentNode.childNodes].filter((el) =>
         el?.classList?.contains(elementActivatorClass)
       );
+      console.log(buttons);
       buttons.forEach((button) => {
         if (button?.classList?.contains("active")) {
           button.classList.remove("active");
@@ -11178,9 +11181,6 @@ function openTab(
       });
       // set new active button after changing tab success
       elementActivator.classList.add("active");
-      const projectsBlock = elementActivator.closest(".projects-block");
-      const contactLink = projectsBlock.querySelector(".project-button");
-      updateContactLink(contactLink);
     }
   });
 }
@@ -11379,10 +11379,18 @@ function closeAllSelect(elmnt) {
 const CLOSED_TEXT = "Показать еще проекты";
 const OPENED_TEXT = "Свернуть";
 const CLOSED_CLASS = "spoiler-closed";
+const LIMITS = {
+  mobile: 150,
+  desk: 100,
+};
 // if height of element greater than MAX_HEIGHT, cut with spoiler
 const spoilers = document.querySelectorAll(".spoiler");
 spoilers.forEach((spoiler) => {
-  if (spoiler.offsetHeight) {
+  const isActiveOnMobile =
+    screen.width < 768 && spoiler.offsetHeight > LIMITS.mobile;
+  const isActiveOnDesktop =
+    screen.width >= 768 && spoiler.offsetHeight > LIMITS.mobile;
+  if (isActiveOnMobile || isActiveOnDesktop) {
     if (!spoiler.classList.contains(CLOSED_CLASS)) {
       spoiler.classList.add(CLOSED_CLASS);
     }
@@ -11409,11 +11417,7 @@ function toggleSpoiler(e) {
     toggler.classList.add(CLOSED_CLASS);
     toggler.textContent = CLOSED_TEXT;
   }
-  console.log(spoiler);
-  console.log("toggle");
 }
-// if less than max height, remove spoiler control
-// add activation on click to show cut content
 
 /******/ })()
 ;
