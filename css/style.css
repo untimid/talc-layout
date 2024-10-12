@@ -1701,11 +1701,11 @@ button.filter-link {
 
 @media only screen and (min-width: 1920px) {
   .wrapper {
-    max-width: 1600px;
+    max-width: 1800px;
     margin-left: auto;
     margin-right: auto;
   }
   .hero-swiper {
-    height: 860px;
+    height: 1000px;
   }
 }
