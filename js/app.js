@@ -9,50 +9,9 @@ new Swiper(".hero-swiper", {
   spaceBetween: 0,
   loop: true, // infinite loop from
   initialSlide: 1,
-  slidesPerGroup: 1,
-  maxBackfaceHiddenSlides: 4,
   breakpoints: {
     // when window width is >= 390px
     390: {
-      centeredSlides: true,
-      slidesPerView: 1.1,
-      spaceBetween: 8,
-    },
-    // when window width is >= 768px
-    768: {
-      centeredSlides: true,
-      slidesPerView: 1.16,
-      spaceBetween: 8,
-    },
-    // when window width is >= 1200px
-    1200: {
-      centeredSlides: true,
-      slidesPerView: 1.134,
-      spaceBetween: 8,
-    },
-    1280: {
-      centeredSlides: true,
-      slidesPerView: 1.228,
-      spaceBetween: 8,
-    },
-    1366: {
-      centeredSlides: true,
-      slidesPerView: 1.23,
-      spaceBetween: 8,
-    },
-    1440: {
-      centeredSlides: true,
-      slidesPerView: 1.08,
-      spaceBetween: 8,
-    },
-    1536: {
-      centeredSlides: true,
-      slidesPerView: 1.222,
-      spaceBetween: 8,
-    },
-    1920: {
-      centeredSlides: true,
-      slidesPerView: 1.2,
       spaceBetween: 8,
     },
   },
