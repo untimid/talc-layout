@@ -1701,6 +1701,7 @@ button.filter-link {
 
 @media only screen and (min-width: 1920px) {
   .wrapper {
+    width: 1800px;
     max-width: 1800px;
     margin-left: auto;
     margin-right: auto;
