@@ -11087,10 +11087,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const WHATSAPP_PHONE = "+79104256479";
 
-new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
+const swipers = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper", {
   // configure Swiper to use modules
   spaceBetween: 0,
-  loop: true, // infinite loop from
+  // loop: true, // infinite loop from
   initialSlide: 1,
   breakpoints: {
     // when window width is >= 390px
