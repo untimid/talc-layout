@@ -4,10 +4,10 @@ import "swiper/css";
 
 const WHATSAPP_PHONE = "+79104256479";
 
-new Swiper(".hero-swiper", {
+const swipers = new Swiper(".hero-swiper", {
   // configure Swiper to use modules
   spaceBetween: 0,
-  loop: true, // infinite loop from
+  // loop: true, // infinite loop from
   initialSlide: 1,
   breakpoints: {
     // when window width is >= 390px
