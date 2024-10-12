@@ -1688,12 +1688,12 @@ button.filter-link {
 
 @media only screen and (min-width: 1440px) {
   .wrapper {
-    max-width: 1200px;
+    max-width: 1300px;
     margin-left: auto;
     margin-right: auto;
   }
   .hero-swiper {
-    height: 650px;
+    height: 728px;
     overflow-x: visible;
   }
 
