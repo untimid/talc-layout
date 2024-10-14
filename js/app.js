@@ -11092,7 +11092,7 @@ const swipers = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-swiper
   spaceBetween: 0,
   loop: true, // infinite loop from
   initialSlide: 1,
-  lazyPreloadPrevNext: 2,
+  lazyPreloadPrevNext: 1,
   loopAdditionalSlides: 3,
   breakpoints: {
     // when window width is >= 390px
@@ -11141,7 +11141,7 @@ function handleSlideChangeCheck(swiper) {
 }
 
 projectSwipers.forEach((swiper) => {
-  const readyProjects = [];
+  const readyProjects = {};
   const projectSelectorContainer = swiper.el
     .closest(".projects-block")
     .querySelector(".project-tabs-controls");
@@ -11149,13 +11149,13 @@ projectSwipers.forEach((swiper) => {
   const slides = swiper.el.querySelectorAll(".swiper-slide");
   swiper.on("slideChangeTransitionEnd", handleSlideChangeCheck);
   slides.forEach((slide, index) => {
-    if (index === 0) return; // skip initial slide
+    if (index === 0) return;
     const slideProject = slide.dataset["projectid"];
     // set initial active project for slider
     if (index === 1) {
       swiper.el.dataset.activeproject = slideProject;
     }
-    if (!readyProjects.includes(slideProject)) {
+    if (!readyProjects.hasOwnProperty(slideProject)) {
       // generate button add handler to swipe to current slide
       const projectSelector = document.createElement("button");
       projectSelector.classList =
@@ -11165,12 +11165,17 @@ projectSwipers.forEach((swiper) => {
       projectSelector.dataset["projectid"] = slideProject;
       // get text from slide headline
       projectSelector.textContent = slide.querySelector("h2").textContent || "";
-      projectSelector.addEventListener("click", () => {
-        swiper.slideTo(index);
+      const slideId = slideProject;
+      slide.dataset["slideid"] = slideId;
+      projectSelector.addEventListener("click", (e) => {
+        const targetSlide = swiper.slides.findIndex(
+          (slide) => slide.dataset["slideid"] === slideId
+        );
+        swiper.slideTo(targetSlide);
       });
       // insert button to document
       projectSelectorContainer.appendChild(projectSelector);
-      readyProjects.push(slideProject);
+      readyProjects[slideProject] = slideId;
     }
   });
 });
