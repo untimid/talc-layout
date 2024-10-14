@@ -7,7 +7,7 @@ const WHATSAPP_PHONE = "+79104256479";
 const swipers = new Swiper(".hero-swiper", {
   // configure Swiper to use modules
   spaceBetween: 0,
-  // loop: true, // infinite loop from
+  loop: true, // infinite loop from
   initialSlide: 1,
   breakpoints: {
     // when window width is >= 390px
@@ -24,6 +24,70 @@ const swipers = new Swiper(".hero-swiper", {
     el: ".swiper-pagination",
     clickable: true,
   },
+});
+const projectSwipers = swipers.filter((swiper) =>
+  swiper.el.classList.contains("project-tab")
+);
+
+function handleSlideChangeCheck(swiper) {
+  // if slide is from same project - return
+  const activeProject = swiper.el.dataset["activeproject"];
+  const activeSlide = swiper.slides.find((slide) =>
+    slide.classList.contains("swiper-slide-active")
+  );
+  const activeSlideProject = activeSlide.dataset["projectid"];
+  if (activeProject === activeSlideProject) return;
+
+  const projectSelectorContainer = swiper.el
+    .closest(".projects-block")
+    .querySelector(".project-tabs-controls");
+  const projectSelectors = projectSelectorContainer.querySelectorAll(
+    ".project-tab-selector"
+  );
+  // if slide is from new project, fire changes
+  projectSelectors.forEach((selector) => {
+    if (selector.dataset.projectid === activeSlideProject) {
+      selector.classList.add("active");
+    } else {
+      selector.classList.remove("active");
+    }
+  });
+  swiper.el.dataset["activeproject"] = activeSlideProject;
+}
+
+projectSwipers.forEach((swiper) => {
+  const readyProjects = [];
+  const projectSelectorContainer = swiper.el
+    .closest(".projects-block")
+    .querySelector(".project-tabs-controls");
+  // on slide change check if active project tab change
+  const slides = swiper.el.querySelectorAll(".swiper-slide");
+  swiper.on("slideChangeTransitionEnd", handleSlideChangeCheck);
+  slides.forEach((slide, index) => {
+    if (index === 0) return; // skip initial slide
+    const slideProject = slide.dataset["projectid"];
+    // set initial active project for slider
+    if (index === 1) {
+      swiper.el.dataset.activeproject = slideProject;
+    }
+    if (!readyProjects.includes(slideProject)) {
+      // generate button add handler to swipe to current slide
+      const projectSelector = document.createElement("button");
+      projectSelector.classList =
+        index === 1
+          ? "filter-link project-tab-selector active"
+          : "filter-link project-tab-selector";
+      projectSelector.dataset["projectid"] = slideProject;
+      // get text from slide headline
+      projectSelector.textContent = slide.querySelector("h2").textContent || "";
+      projectSelector.addEventListener("click", () => {
+        swiper.slideTo(index);
+      });
+      // insert button to document
+      projectSelectorContainer.appendChild(projectSelector);
+      readyProjects.push(slideProject);
+    }
+  });
 });
 
 // CTA click handler
@@ -86,17 +150,7 @@ function openTab(
     }
   });
 }
-// handle tab selectors for projects
-document.querySelectorAll(".project-tab-selector")?.forEach((button) => {
-  button.addEventListener("click", (e) =>
-    openTab(
-      button.dataset.tabid,
-      "project-tab",
-      e.target,
-      "project-tab-selector"
-    )
-  );
-});
+
 // handle tab selectors for project types
 const PORTFOLIO_OPTIONS = {
   all: ["banyas", "saunas", "hammams", "camins"],
