@@ -9,7 +9,6 @@ const swipers = new Swiper(".hero-swiper", {
   spaceBetween: 0,
   loop: true, // infinite loop from
   initialSlide: 1,
-  lazyPreloadPrevNext: 1,
   loopAdditionalSlides: 3,
   breakpoints: {
     // when window width is >= 390px
@@ -186,6 +185,7 @@ document.querySelectorAll(".portfolio-tab-selector")?.forEach((button) => {
   if (PORTFOLIO_OPTIONS.hasOwnProperty(option)) {
     button.addEventListener("click", (e) => {
       // sync with select
+      console.log(e);
       const mobileSelect = document.getElementById("filter-select");
       const mobileOption = [...mobileSelect.options]?.find(
         (op) => op.value === option
