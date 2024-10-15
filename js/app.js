@@ -102,7 +102,7 @@ function scrollToAnchor(e) {
   // e.stopPropagation();
   const elementId = e.target.dataset.scrollto;
   const targetEl = document.getElementById(elementId);
-  window.scrollTo(0, targetEl.offsetTop - 45);
+  window.scrollTo(0, targetEl.offsetTop - 70);
 }
 // add listeners to portfolio blocks links and menu links
 document.querySelectorAll(".custom-anchor-link").forEach((anchorLink) => {
