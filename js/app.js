@@ -96,6 +96,19 @@ projectSwipers.forEach((swiper) => {
   });
 });
 
+// Handle anchor link navigation
+function scrollTo(e) {
+  e.preventDefault();
+  // e.stopPropagation();
+  const elementId = e.target.dataset.scrollto;
+  const targetEl = document.getElementById(elementId);
+  window.scrollTo(0, targetEl.offsetTop - 45);
+}
+// add listeners to portfolio blocks links and menu links
+document.querySelectorAll(".custom-anchor-link").forEach((anchorLink) => {
+  anchorLink.addEventListener("click", scrollTo);
+});
+
 // CTA click handler
 function handleCTAClick(e) {
   e.preventDefault();
@@ -116,111 +129,12 @@ ctaButtons.forEach((button) =>
   button.addEventListener("click", handleCTAClick)
 );
 
-function openTab(
-  tabId,
-  tabClass,
-  elementActivator,
-  elementActivatorClass,
-  closeSiblings = true
-) {
-  const targetTab = document.getElementById(tabId);
-  if (!targetTab) {
-    console.warn("укажите id для выбора проекта");
-    return;
-  }
-  const tabs =
-    [...targetTab.parentNode.childNodes].filter((node) =>
-      node?.classList?.contains(tabClass)
-    ) || [];
-  tabs.forEach((tab) => {
-    // if got active class, remove it
-    if (closeSiblings && tab.id !== tabId && tab.classList.contains("active")) {
-      tab.classList.remove("active");
-    }
-    // if got same id as target, set active class
-    if (tab.id === tabId) {
-      if (!tab.classList.contains("active")) {
-        tab.classList.add("active");
-      }
-      // reset buttons active status
-      const buttons = [...elementActivator.parentNode.childNodes].filter((el) =>
-        el?.classList?.contains(elementActivatorClass)
-      );
-      buttons.forEach((button) => {
-        if (button?.classList?.contains("active")) {
-          button.classList.remove("active");
-        }
-      });
-      // set new active button after changing tab success
-      elementActivator.classList.add("active");
-    }
-  });
-}
-
-// handle tab selectors for project types
-const PORTFOLIO_OPTIONS = {
-  all: ["banyas", "saunas", "hammams", "camins"],
-  banyas: ["banyas"],
-  saunas: ["saunas"],
-  hammams: ["hammams"],
-  camins: ["camins"],
-};
-// on switch we should:
-// - sync filter and selector
-// - if "all" selected, activate all tabs
-// - if explicit tab selected, activate it
-const portfolioSelector = document.getElementById("filter-select");
-const options = [...portfolioSelector.options];
-options.forEach((option) =>
-  option.addEventListener("click", (e) => {
-    const value = e.target.value;
-    const selectors = [...document.querySelectorAll(".portfolio-tab-selector")];
-    const targetSelector = selectors.find((sel) => sel.dataset.tabid === value);
-    targetSelector.click();
-  })
-);
-
-document.querySelectorAll(".portfolio-tab-selector")?.forEach((button) => {
-  const option = button.dataset.tabid;
-  if (PORTFOLIO_OPTIONS.hasOwnProperty(option)) {
-    button.addEventListener("click", (e) => {
-      // sync with select
-      console.log(e);
-      const mobileSelect = document.getElementById("filter-select");
-      const mobileOption = [...mobileSelect.options]?.find(
-        (op) => op.value === option
-      );
-      const optionIndex = mobileOption.index || 0;
-      const customOption = mobileSelect
-        .closest(".custom-select")
-        .querySelectorAll(`[data-index="${optionIndex}"]`);
-      customOption?.[0]?.click();
-
-      PORTFOLIO_OPTIONS[option].forEach((op) => {
-        option === "all"
-          ? openTab(
-              op,
-              "portfolio-tab",
-              e.target,
-              "portfolio-tab-selector",
-              false
-            )
-          : openTab(op, "portfolio-tab", e.target, "portfolio-tab-selector");
-      });
-    });
-  }
-});
-
 // HANDLING POPUP MENU
 const menu = document.querySelector("#mobile-menu");
 const body = document.querySelector("body");
 const menuItems = document.querySelectorAll(".popup-menu-item");
 const hamburger = document.querySelector(".hamburger-button");
 const closeIcon = document.querySelector(".popup-menu-cross-button");
-
-/* If the user clicks anywhere outside the select box,
-then close all select boxes: */
-document.addEventListener("click", closeAllSelect);
 
 function toggleMenu() {
   if (menu.classList.contains("popup-menu-visible")) {
@@ -238,103 +152,6 @@ hamburger.addEventListener("click", toggleMenu);
 menuItems.forEach(function (menuItem) {
   menuItem.addEventListener("click", toggleMenu);
 });
-
-// CUSTOM SELECT LOGIC
-let customSelectsArr,
-  htmlSelect,
-  selectedOption,
-  customOptionsContainer,
-  customOption;
-/* Look for any elements with the class "custom-select": */
-customSelectsArr = document.getElementsByClassName("custom-select");
-
-for (let i = 0; i < customSelectsArr.length; i++) {
-  htmlSelect = customSelectsArr[i].getElementsByTagName("select")[0];
-  /* For each element, create a new DIV that will act as the selected item: */
-  selectedOption = document.createElement("DIV");
-  selectedOption.setAttribute("class", "select-selected");
-  selectedOption.innerHTML =
-    htmlSelect.options[htmlSelect.selectedIndex].innerHTML;
-  customSelectsArr[i].appendChild(selectedOption);
-  /* For each element, create a new DIV that will contain the option list: */
-  customOptionsContainer = document.createElement("DIV");
-  customOptionsContainer.setAttribute("class", "select-items select-hide");
-  for (let j = 0; j < htmlSelect.length; j++) {
-    /* For each option in the original select element,
-    create a new DIV that will act as an option item: */
-    customOption = document.createElement("DIV");
-    customOption.innerHTML = htmlSelect.options[j].innerHTML;
-    customOption.dataset.index = j;
-
-    customOptionsContainer.appendChild(customOption);
-
-    customOption.addEventListener("click", function (e) {
-      const targetEl = e.target;
-      /* When an item is clicked, update the original select box,
-        and the selected item: */
-      let y, k, htmlSelectUpdate, customSelectedOption, yl;
-      htmlSelectUpdate =
-        targetEl.parentNode.parentNode.getElementsByTagName("select")[0];
-
-      let optionsAmount = htmlSelectUpdate.length;
-
-      customSelectedOption = targetEl.parentNode.previousSibling;
-      for (let i = 0; i < optionsAmount; i++) {
-        if (htmlSelectUpdate.options[i].innerHTML == targetEl.innerHTML) {
-          htmlSelectUpdate.selectedIndex = i;
-          htmlSelectUpdate[i].click();
-          customSelectedOption.innerHTML = targetEl.innerHTML;
-          y = targetEl.parentNode.getElementsByClassName("same-as-selected");
-          yl = y.length;
-          for (k = 0; k < yl; k++) {
-            y[k].removeAttribute("class");
-          }
-          targetEl.setAttribute("class", "same-as-selected");
-          break;
-        }
-      }
-      customSelectedOption.click();
-    });
-  }
-  customSelectsArr[i].appendChild(customOptionsContainer);
-
-  selectedOption.addEventListener("click", function (e) {
-    /* When the select box is clicked, close any other select boxes,
-    and open/close the current select box: */
-    const targetEl = e.target;
-    e.stopPropagation();
-    closeAllSelect(targetEl);
-    targetEl.nextSibling.classList.toggle("select-hide");
-    targetEl.classList.toggle("select-arrow-active");
-  });
-}
-
-function closeAllSelect(elmnt) {
-  /* A function that will close all select boxes in the document,
-  except the current select box: */
-  var x,
-    y,
-    i,
-    xl,
-    yl,
-    arrNo = [];
-  x = document.getElementsByClassName("select-items");
-  y = document.getElementsByClassName("select-selected");
-  xl = x.length;
-  yl = y.length;
-  for (i = 0; i < yl; i++) {
-    if (elmnt == y[i]) {
-      arrNo.push(i);
-    } else {
-      y[i].classList.remove("select-arrow-active");
-    }
-  }
-  for (i = 0; i < xl; i++) {
-    if (arrNo.indexOf(i)) {
-      x[i].classList.add("select-hide");
-    }
-  }
-}
 
 // SPOILER LOGIC
 // to use spoiler can add 'spoiler' class to div and data-maxheight attr

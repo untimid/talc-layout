@@ -41,13 +41,15 @@
         </div>
         <ul class="popup-menu-links">
           <li class="header-menu-item popup-menu-item">
-            <a href="#about">О компании</a>
+            <a data-scrollto="about" class="custom-anchor-link">О компании</a>
           </li>
           <li class="header-menu-item popup-menu-item">
-            <a href="#portfolio">Галерея проектов</a>
+            <a data-scrollto="portfolio" class="custom-anchor-link"
+              >Галерея проектов</a
+            >
           </li>
           <li class="header-menu-item popup-menu-item">
-            <a href="#contacts">Контакты</a>
+            <a data-scrollto="contacts" class="custom-anchor-link">Контакты</a>
           </li>
         </ul>
         <a href="tel:+79104256479" class="phone-link">+7 (910) 425-64-79</a>
@@ -125,13 +127,15 @@
       <img src="./img/Talc.svg" class="header-logo" />
       <ul class="header-desktop-menu">
         <li class="header-menu-item">
-          <a href="#about">О компании</a>
+          <a data-scrollto="about" class="custom-anchor-link">О компании</a>
         </li>
         <li class="header-menu-item">
-          <a href="#portfolio">Галерея проектов</a>
+          <a data-scrollto="portfolio" class="custom-anchor-link"
+            >Галерея проектов</a
+          >
         </li>
         <li class="header-menu-item">
-          <a href="#contacts">Контакты</a>
+          <a data-scrollto="contacts" class="custom-anchor-link">Контакты</a>
         </li>
       </ul>
       <div class="header-contacts">
@@ -339,51 +343,28 @@
         </div>
       </section>
       <section id="portfolio" class="wrapper projects-section">
-        <!-- фильтры для десктопа и таблета -->
         <div class="projects-filter">
           <button
-            data-tabid="all"
-            class="portfolio-tab-selector active filter-link"
-          >
-            Все проекты
-          </button>
-          <button
-            data-tabid="banyas"
-            class="portfolio-tab-selector filter-link"
+            data-scrollto="bany"
+            class="custom-anchor-link filter-link active"
           >
             Бани
           </button>
-          <button
-            data-tabid="saunas"
-            class="portfolio-tab-selector filter-link"
-          >
+          <button data-scrollto="sauny" class="custom-anchor-link filter-link">
             Сауны
           </button>
           <button
-            data-tabid="hammams"
-            class="portfolio-tab-selector filter-link"
+            data-scrollto="hammamy"
+            class="custom-anchor-link filter-link"
           >
             Хаммамы
           </button>
-          <button
-            data-tabid="camins"
-            class="portfolio-tab-selector filter-link"
-          >
+          <button data-scrollto="caminy" class="custom-anchor-link filter-link">
             Камины
           </button>
         </div>
-        <!-- фильтры для мобилки в селекте -->
-        <div class="custom-select projects-filter-select blue-select-border">
-          <select id="filter-select">
-            <option value="all">Все проекты</option>
-            <option value="banyas">Бани</option>
-            <option value="saunas">Сауны</option>
-            <option value="hammams">Хаммамы</option>
-            <option value="camins">Камины</option>
-          </select>
-        </div>
         <div
-          id="banyas"
+          id="bany"
           class="portfolio-tab active projects-block projects-banya"
         >
           <div class="project-tabs projects-slider-banya">
@@ -634,7 +615,7 @@
           </div>
         </div>
         <div
-          id="saunas"
+          id="sauny"
           class="portfolio-tab active projects-block projects-sauna"
         >
           <div class="project-tabs projects-slider-sauna">
@@ -749,7 +730,7 @@
           </div>
         </div>
         <div
-          id="hammams"
+          id="hammamy"
           class="portfolio-tab active projects-block projects-sauna"
         >
           <div class="project-tabs projects-slider-sauna">
@@ -864,7 +845,7 @@
           </div>
         </div>
         <div
-          id="camins"
+          id="caminy"
           class="portfolio-tab active projects-block projects-sauna"
         >
           <div class="project-tabs projects-slider-sauna">
