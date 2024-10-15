@@ -11180,7 +11180,7 @@ projectSwipers.forEach((swiper) => {
 });
 
 // Handle anchor link navigation
-function scrollTo(e) {
+function scrollToAnchor(e) {
   e.preventDefault();
   // e.stopPropagation();
   const elementId = e.target.dataset.scrollto;
@@ -11189,7 +11189,7 @@ function scrollTo(e) {
 }
 // add listeners to portfolio blocks links and menu links
 document.querySelectorAll(".custom-anchor-link").forEach((anchorLink) => {
-  anchorLink.addEventListener("click", scrollTo);
+  anchorLink.addEventListener("click", scrollToAnchor);
 });
 
 // CTA click handler
