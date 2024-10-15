@@ -9,7 +9,7 @@ const swipers = new Swiper(".hero-swiper", {
   spaceBetween: 0,
   loop: true, // infinite loop from
   initialSlide: 1,
-  loopAdditionalSlides: 3,
+  loopAdditionalSlides: 1,
   breakpoints: {
     // when window width is >= 390px
     390: {
